@@ -1,0 +1,176 @@
+<% include ../_layouts/admin_header %>
+<div class="mdk-drawer-layout js-mdk-drawer-layout" data-fullbleed data-push data-responsive-width="992px" data-has-scrolling-region>
+
+        <div class="mdk-drawer-layout__content">
+          <div class="mdk-header js-mdk-header bg-primary  data-fixed">
+                    <div class="mdk-header__content">
+
+                        <nav class="navbar navbar-expand-md bg-primary navbar-dark d-flex-none">
+                            <button class="btn btn-link text-white pl-0" type="button" data-toggle="sidebar">
+                              <i class="material-icons align-middle md-36">short_text</i>
+                            </button>
+                            <div class="page-title m-0">Dashboard</div>
+
+                            <div class="collapse navbar-collapse" id="mainNavbar">
+                                <ul class="navbar-nav ml-auto align-items-center">
+
+                                    <li class="nav-item nav-divider">
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link dropdown-toggle dropdown-clear-caret" data-toggle="sidebar" data-target="#user-drawer">
+                                              <%= locals.user.name %>
+                                              <img src="https://pbs.twimg.com/profile_images/928893978266697728/3enwe0fO_400x400.jpg" class="img-fluid rounded-circle ml-1" width="35"
+                                                alt="">
+                                            </a>
+                                        </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
+
+            <!-- header-layout -->
+               <div class="mdk-header-layout__content mdk-header-layout__content--scrollable h-100">
+
+                
+
+               
+    <div class="container-fluid">
+      <%- messages('messages', locals) %>
+      <% if(errors) { %>
+        <% errors.forEach(function(error){ %>
+        <div class="alert alert-danger">
+          <%= error.msg %>
+        </div>
+        <% }); %>
+      <% } %>
+      <h2>Add New Product</h2>
+      
+          <form id="add_new_product" action="/admin/add-product" method="post" enctype="multipart/form-data">
+            <div class="row">
+            <div class="col-md-10 col-lg-10">
+              <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                      <h4 for="post-title">Product Name</h4>
+                      <input type="text" class="form-control" id="post-title" name="product_name" placeholder="Enter Product Title" >
+                    </div>
+
+                    <div class="form-group">
+                      <h4 for="post-slug">Slug</h4>
+                      <input type="text" class="form-control" id="post-slug" name="product_slug" placeholder="Enter Slug">
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 col-lg-6">
+                        <div class="form-group">
+                          <h4 for="post-content">Description</h4>
+                          <textarea name="description" ></textarea>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-lg-6">
+                        <div class="form-group">
+                          <h4 for="post-content">Short Description</h4>
+                          <textarea name="short_description" ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 col-lg-6">
+                      <div class="form-group">
+                        <h4 for="post-content">Important Info</h4>
+                        <textarea name="important_info" ></textarea>
+                      </div>
+                      </div>
+                      <div class="col-md-6 col-lg-6">
+                        <div class="form-group">
+                          <h4 for="post-content">Details Specification</h4>
+                          <textarea name="details_specification" ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-3">
+                        <div class="form-group">
+                          <h4 for="post-price">Price</h4>
+                          <input type="number" class="form-control" id="post-price" name="product_price">
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="form-group">
+                          <h4 for="post-seller">Seller</h4>
+                          <input type="text" class="form-control" id="post-seller" name="product_seller">
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="form-group">
+                          <h4 for="post-stock">Stock</h4>
+                          <input type="number" class="form-control" id="post-stock" name="product_stock">
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="form-group">
+                          <h4 for="post-availibility">Availibility</h4>
+                          <select name="product_availibility" class="form-control">
+                            <option value="instock">In Stock </option>
+                            <option value="outofstock">Out Of Stock</option>
+                            <option value="limitedstock">Limited Stock</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    
+
+                  <br><br>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-2 col-lg-2">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <h4 for="post-title">Product Category</h4>
+                      <hr>
+                      <ul style="list-style: none;padding-left: 0;">
+                      <% allProductCategories.forEach(function(cat){ %>
+                        <li style="margin-bottom: 10px;"><input type="radio" name="product_category" value="<%- cat._id %>" /><span style="margin-left: 10px;"><%- cat.category_name %></span></li>
+                      <% }); %>
+                      </ul>
+                      
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="form-group">
+                      <h4 for="featuredimage">Featured Image</h4>
+                      <input type="file" class="form-control-file" id="featuredimage" name="featured_image" />
+                      <br>
+                      <img id="image_preview" src="" alt="your image"  style="width: 100px; height: 100px; display: none"/>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="form-group">
+                      <button class="btn btn-primary btn-lg">Publish</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            </div>
+         </form>
+      
+    </div>
+   </div>
+
+
+        </div>
+
+
+
+        <% include ../_layouts/admin_sidebar %>
+
+       <% include ../_layouts/admin_right_drawer %>
+
+
+    </div>
+
+<% include ../_layouts/admin_footer %>

@@ -1,0 +1,109 @@
+<% include ../_layouts/admin_header %>
+<style>
+  div#data-table_filter {
+    float: right;
+}
+</style>
+<div class="mdk-drawer-layout js-mdk-drawer-layout" data-fullbleed data-push data-responsive-width="992px" data-has-scrolling-region>
+
+        <div class="mdk-drawer-layout__content">
+            <!-- header-layout -->
+            <div class="mdk-header-layout js-mdk-header-layout  mdk-header--fixed  mdk-header-layout__content--scrollable">
+                <!-- header -->
+                <div class="mdk-header js-mdk-header bg-primary  data-fixed">
+                    <div class="mdk-header__content">
+
+                        <nav class="navbar navbar-expand-md bg-primary navbar-dark d-flex-none">
+                            <button class="btn btn-link text-white pl-0" type="button" data-toggle="sidebar">
+                              <i class="material-icons align-middle md-36">short_text</i>
+                            </button>
+                            <div class="page-title m-0">Dashboard</div>
+
+                            <div class="collapse navbar-collapse" id="mainNavbar">
+                                <ul class="navbar-nav ml-auto align-items-center">
+
+                                    <li class="nav-item nav-divider">
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link dropdown-toggle dropdown-clear-caret" data-toggle="sidebar" data-target="#user-drawer">
+                                              <%= locals.user.name %>
+                                              <img src="https://pbs.twimg.com/profile_images/928893978266697728/3enwe0fO_400x400.jpg" class="img-fluid rounded-circle ml-1" width="35"
+                                                alt="">
+                                            </a>
+                                        </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- content -->
+                <div class="mdk-header-layout__content top-navbar mdk-header-layout__content--scrollable h-100">
+                    <!-- main content -->
+                    <div class="container-fluid">
+                        <h2>All Products</h2>
+                        <div class="card">
+                            <div class="card-header">
+                              <a href="/admin/add-product" class="btn btn-primary">Add New</a>
+                            </div>
+                            <div class="py-4">
+                                <div class="table-responsive">
+                                    <table id="data-table" class="table table-striped table-bordered" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Product Name</th>
+                                                <th>Image</th>
+                                                <th>Posted At</th>
+                                                <th>Author</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <% allProduct.forEach(function(p){ %>
+                                            <tr>
+                                                <td><%= p.name.charAt(0).toUpperCase()  + p.name.slice(1) %></td>
+                                                <td>
+                                                  <a href="/admin_uploads/<%= p.featured_image %>" data-fancybox="gallery">
+                                                  <img src="/admin_uploads/<%= p.featured_image %>" style="width: 100px;"/>
+                                                  </a>
+                                                </td>
+                                                <td><%= new Date(p.createdAt).toISOString().slice(0, 10) %></td>
+                                                <td><%= p.post_author.name %></td>
+                                                <td>
+                                                  <a class="btn btn-primary btn-xs" href="/admin/edit-post/<%= p._id %>">Edit</a>
+                                                  <a class="btn btn-danger btn-xs" href="#" id="product-delete" data-post-id="<%= p._id %>">Delete</a>
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Product Name</th>
+                                                <th>Image</th>
+                                                <th>Posted At</th>
+                                                <th>Author</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- // END drawer-layout__content -->
+
+        <!-- sidebar -->
+        <% include ../_layouts/admin_sidebar %>
+        <!-- // END sidebar -->
+
+        <!-- drawer -->
+       <% include ../_layouts/admin_right_drawer %>
+        <!-- // END drawer -->
+
+    </div>
+    <!-- // END drawer-layout -->
+<% include ../_layouts/admin_footer %>

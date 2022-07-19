@@ -1,0 +1,8 @@
+      .note-insert.btn-group>.btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+    display:none;
+}
+
+
+.note-insert.btn-group>.btn:last-child:not(:first-child), .btn-group>.dropdown-toggle:not(:first-child) {
+    display:none;
+}

@@ -1,0 +1,84 @@
+
+    <!-- jQuery -->
+    <script src="/admin_assets/vendor/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="/admin_assets/vendor/popper.js"></script>
+    <script src="/admin_assets/vendor/bootstrap.min.js"></script>
+
+    <!-- Simplebar -->
+    <!-- Used for adding a custom scrollbar to the drawer -->
+    <script src="/admin_assets/vendor/simplebar.js"></script>
+
+
+    <!-- Vendor -->
+    <script src="/admin_assets/vendor/Chart.min.js"></script>
+    <script src="/admin_assets/vendor/moment.min.js"></script>
+
+
+    <!-- APP -->
+    <script src="/admin_assets/js/color_variables.js"></script>
+    <script src="/admin_assets/js/app.js"></script>
+
+
+    <script src="/admin_assets/vendor/dom-factory.js"></script>
+    <!-- DOM Factory -->
+    <script src="/admin_assets/vendor/material-design-kit.js"></script>
+    <!-- MDK -->
+
+
+
+    <script>
+        (function() {
+            'use strict';
+            // Self Initialize DOM Factory Components
+            domFactory.handler.autoInit()
+
+
+            // Connect button(s) to drawer(s)
+            var sidebarToggle = document.querySelectorAll('[data-toggle="sidebar"]')
+
+            sidebarToggle.forEach(function(toggle) {
+                toggle.addEventListener('click', function(e) {
+                    var selector = e.currentTarget.getAttribute('data-target') || '#default-drawer'
+                    var drawer = document.querySelector(selector)
+                    if (drawer) {
+                        if (selector == '#default-drawer') {
+                            $('.container-fluid').toggleClass('container--max');
+                        }
+                        drawer.mdkDrawer.toggle();
+                    }
+                })
+            })
+        })()
+    </script>
+
+
+    <script src="/admin_assets/vendor/bootstrap-datepicker.min.js"></script>
+    <script src="/admin_assets/js/datepicker.js"></script>
+
+
+    <script src="/admin_assets/vendor/jquery.dataTables.js"></script>
+    <script src="/admin_assets/vendor/dataTables.bootstrap4.js"></script>
+
+    <script>
+        $('#data-table').dataTable();
+    </script>
+
+    
+    <script>
+            CKEDITOR.replace( 'description' );
+            CKEDITOR.replace( 'short_description' );
+            CKEDITOR.replace( 'important_info' );
+            CKEDITOR.replace( 'details_specification' );
+            CKEDITOR.replace( 'post_content' );
+            CKEDITOR.replace( 'category_content' );
+    </script>
+
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/admin_assets/vendor/jquery.fancybox.min.js"></script>
+    <script src="/admin_assets/js/rebelcell_scripts.js"></script>
+</body>
+
+</html>
