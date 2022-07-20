@@ -29,7 +29,7 @@ app.use(cookieParser());
 // express session middleware
 const MongoDBStore = require('connect-mongodb-session')(session);
 const store = new MongoDBStore({
-  uri: 'mongodb://localhost:27017/rebelcell',
+  uri: process.env.DB_URI,
   collection: 'mySessions'
 });
 // Catch errors
