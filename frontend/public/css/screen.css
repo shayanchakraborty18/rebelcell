@@ -1,0 +1,281 @@
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  /*vertical-align: baseline;*/
+}
+
+html { line-height: 1; }
+
+ol,
+ul { list-style: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q,
+blockquote { quotes: none; }
+
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img { border: none; }
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary { display: block; }
+
+/**************************/
+/***** Global Classes *****/
+/**************************/
+
+*,
+*:after,
+*:before {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/***************/
+/***** SVG *****/
+/***************/
+
+.svg-wrap {
+  height: 0;
+  width: 0;
+  position: absolute;
+  overflow: hidden;
+}
+
+/************************/
+/***** Sleek Slider *****/
+/************************/
+
+.sleekslider {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.sleekslider .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 131px);
+}
+
+.sleekslider .slide.active { z-index: 3; }
+
+
+.sleekslider .slide-container {
+  	padding: 0 50px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+	z-index: 0;
+}
+
+.sleekslider .slide-content {
+  z-index: 50;
+  position: relative;
+	display: table;
+	height: 100%;
+	width: 100%;
+}
+
+
+.tabs {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  z-index: 10;
+  background-color: #2b2e36;
+	    z-index: 2;
+}
+
+.tabs ul {
+  margin: 0;
+  list-style: none;
+	display: table;
+	width: 100%;
+}
+
+.tabs ul li {
+  width: 25%;
+  font-size: 14px;
+  position: relative;
+  text-align: left;
+  height: 131px;
+  font-weight: bold;
+  margin: 0;
+  padding: 20px 0;
+  display: table-cell;
+	vertical-align: middle;
+	border-top: #2b2e36 solid 3px;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+}
+.tabs ul li.current,.tabs ul li:hover{
+	border-top: #ffde8d solid 3px;
+/*	box-sizing: border-box;*/
+}
+.tabs ul li.current a,.tabs ul li:hover a {
+  color:#ffde8d;
+}
+
+.tabs ul li a {
+  color: #fff;
+  text-decoration: none;
+  width: 100%;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+	display: block;
+	border-right: #6b6d73 dotted 1px; 
+	position: relative;
+	text-align: center;
+	text-transform: uppercase;
+	font-family: 'Avenir LT Std 35 Light';
+	font-weight: 300;
+    font-size: 16px;
+}
+.tabs ul li:last-child a{
+	border-right: 0;
+}
+
+.tabs ul li.current a span,.tabs ul li:hover a span
+{ color: #fff; }
+
+.tabs ul li a span { 
+	color: rgba(255,255,255,.2); 
+	font-family:'Trajan Pro';
+	font-size: 40px;
+}
+
+.tabs ul li.current a span { 
+	color: #fff;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+}

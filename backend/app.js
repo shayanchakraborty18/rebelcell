@@ -6,6 +6,8 @@ const session = require('express-session');
 const expressValidator = require('express-validator');
 const fileUpload = require('express-fileupload');
 
+const errorMiddleware = require('./middlewares/errors');
+
 //init app
 const app = express();
 
@@ -103,8 +105,10 @@ app.get('*', function(req, res, next) {
 
 // Import all the routes
 const adminRoutes = require('./routes/adminRoutes');
+const postRoutes = require('./routes/postRoutes');
 
 app.use('/admin',  adminRoutes);
+app.use('/api/v1',  postRoutes);
 
 
 if(process.env.NODE_ENV === 'PRODUCTION') {
@@ -115,6 +119,7 @@ if(process.env.NODE_ENV === 'PRODUCTION') {
   })
 }
 
-
+//Middleware to handle errors
+app.use(errorMiddleware);
 
 module.exports = app;
