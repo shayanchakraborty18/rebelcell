@@ -106,9 +106,11 @@ app.get('*', function(req, res, next) {
 // Import all the routes
 const adminRoutes = require('./routes/adminRoutes');
 const postRoutes = require('./routes/postRoutes');
+const productRoutes = require('./routes/productRoutes');
 
 app.use('/admin',  adminRoutes);
 app.use('/api/v1',  postRoutes);
+app.use('/api/v1',  productRoutes);
 
 
 if(process.env.NODE_ENV === 'PRODUCTION') {

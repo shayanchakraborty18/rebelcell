@@ -38,6 +38,19 @@ class APIFeatures {
     this.query = this.query.limit(resPerPage).skip(skip);
     return this;
   }
+
+  stockFilter() {
+    const queryCopy = {...this.queryStr};
+    
+    //Remove the field from query
+    const removeFields = ['keyword', 'page', 'limit'];
+    removeFields.forEach(el => delete queryCopy[el]);
+
+    let queryStr = JSON.stringify(queryCopy);
+
+    this.query = this.query.find(JSON.parse(queryStr));
+    return this;
+  }
 }
 
 module.exports = APIFeatures;
