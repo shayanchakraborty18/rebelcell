@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import {useDispatch, useSelector} from 'react-redux';
 
 import '../../App.css';
 
 function Header() {
+
+  const { cartItems } = useSelector(state => state.cart);
   return (
     <>
          <header>
@@ -21,9 +23,9 @@ function Header() {
                 </div>
                 <div className="header-top-innr innr-detail">
                     <ul>
-                        <li><a href="about.html">about</a></li>
-                        <li><a href="faq.html">f.a.q </a></li>
-                        <li><a href="support.html">support</a></li>
+                        <li><Link to="/about">about</Link></li>
+                        <li><Link to="/faq">f.a.q </Link></li>
+                        <li><Link to="/support">support</Link></li>
                     </ul>
                 </div>
                 <div className="header-top-innr sign-innr">
@@ -51,32 +53,23 @@ function Header() {
 								<ul>
 									<li className="active top-innr">
 										 <div className="dropdown">
-                        <a href="product-category.html"className="dropdown-toggle">Shop
-                        <span><i className="fa fa-angle-down" aria-hidden="true"></i></span></a>
+                        <Link to="/shop"className="dropdown-toggle">Shop &nbsp;
+                        <span><i className="fa fa-angle-down" aria-hidden="true"></i></span></Link>
                         <ul className="dropdown-menu">
-                          <li><a href="shop.html">product categories</a></li>
-                          <li><a href="shop.html">product categories</a></li>
-                          <li><a href="shop.html">product categories</a></li>
+                          <li><Link to="/category/outdoorboxes">Outdoorbox</Link></li>
+                          <li><Link to="/category/batteries">Batteries</Link></li>
+                          <li><Link to="/category/battery-chargers">Battery Chargers</Link></li>
+                          <li><Link to="/category/accessories">Accessories</Link></li>
+                          <li><Link to="/category/fishing-packages">Fishing Packages</Link></li>
+                          <li><Link to="/category/other-products">Other Products</Link></li>
                         </ul>
                       </div> 
                   </li>
-									<li  className="top-innr">
-										<div className="dropdown">
-                      <a  href="target-audiance.html" className="dropdown-toggle">Target
-                      </a>
-                      <ul className="dropdown-menu">
-                        <li><a href="">Carp</a></li>
-                        <li><a href="">Predator</a></li>
-                        <li><a href="">E boating</a></li>
-                        <li><a href="">Other applications</a></li>
-                      </ul>
-                    </div> 
-									</li>
 									<li>
 										<Link to="/news">News</Link>
 									</li>
-                                    <li>
-										<a href="contact.html">Contact </a>
+                  <li>
+										<Link to="/contact">Contact </Link>
 									</li>
 								</ul>
 							</div>
@@ -86,7 +79,9 @@ function Header() {
                <div className="header-icon">
                     
                     <div className="cart-icon">
-                        <span> <img src="/images/cart.png" alt="" /><sup>5</sup></span>
+                      <Link to="/cart">
+                        <span> <img src="/images/cart.png" alt="" /><sup>{cartItems.length}</sup></span>
+                      </Link>
                     </div>
                </div>
            </div>

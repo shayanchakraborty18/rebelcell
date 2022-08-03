@@ -15,6 +15,7 @@ function HomeSlider() {
     fade: true,
     speed: 1100,
     autoplay: true,
+    infinite: true,
 		accessibility: false,
     responsive: [{ 
     breakpoint:768,
@@ -45,12 +46,6 @@ function HomeSlider() {
     },
     {
       imageSrc: '/images/project_slider04.jpg',
-      title: 'Powerful and Durable.',
-      secondTitle: 'But <span> Lightweight.</span>',
-      description: 'The perfect solution to all your Angler Fishing Energy needs.'
-    },
-    {
-      imageSrc: '/images/project_slider05.jpg',
       title: 'Powerful and Durable.',
       secondTitle: 'But <span> Lightweight.</span>',
       description: 'The perfect solution to all your Angler Fishing Energy needs.'

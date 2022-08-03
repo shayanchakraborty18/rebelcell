@@ -54,3 +54,17 @@
 .slick-next.slick-arrow,.slick-prev.slick-arrow {
   background: none;
 }
+
+.tablink.active {
+    border-bottom: 8px solid #171716;
+    color: #171716;
+}
+
+
+.battery-btn button {
+    width: 120px;
+    padding: 6px 0;
+    text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
+}

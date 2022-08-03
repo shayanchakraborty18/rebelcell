@@ -49,9 +49,6 @@ function BlogList() {
 
   return (
     <Fragment>
-      
-      {loading ? <Loader /> :
-      <Fragment>
         <MetaData title={'Rebelcell News'} />
         <section className="banner-sec">
             <img src="images/landing-banner.jpg" alt=""/>
@@ -65,6 +62,8 @@ function BlogList() {
                 </div>
             </div>
         </section>
+        {loading ? <Loader /> :
+        <Fragment>
         <section className="blog-innr-sec wow fadeInUp">
             <div className="container">
                 <div className="blog-innr-outr">

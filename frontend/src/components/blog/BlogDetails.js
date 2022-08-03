@@ -29,20 +29,21 @@ function BlogDetails() {
 
   return (
     <Fragment>
-      {loading ? <Loader /> : (
+      <MetaData title={post.post_title} />
+      <section className="banner-sec">
+          <img src="/images/landing-banner.jpg" alt=""/>
+          <div className="container">
+              <div className="banner-txt">
+                  <h1>news</h1> 
+                    <ul className="breadcrumb">
+                        <li><Link to="/">Home</Link></li>
+                        <li>news</li>
+                    </ul>
+              </div>
+          </div>
+      </section>
+        {loading ? <Loader /> : (
         <Fragment>
-          <section className="banner-sec">
-            <img src="/images/landing-banner.jpg" alt=""/>
-            <div className="container">
-                <div className="banner-txt">
-                    <h1>news</h1> 
-                      <ul className="breadcrumb">
-                          <li><Link to="/">Home</Link></li>
-                          <li>news</li>
-                      </ul>
-                </div>
-            </div>
-        </section>
         <section className="blog_dtls">
           <div className="container">
             <div className="row">

@@ -278,57 +278,6 @@ function Home() {
             </div>
         </section>
 
-        <section className="dealer-sec">
-            <img src="/images/dealer-img.jpg" alt=""/>
-               <div className="dealer-outr"> 
-                   <div className="dealer-innr">
-                        <div className="commn-header">
-                        <h5>Interested in</h5>
-                        <h3>Becoming a <br /> Dealer?</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br /> Etiam sodales lacinia diam, nec aliquet lorem at. </p>
-                    </div>
-                       <a  className="ban-btn">sit Dealer Portal</a> 
-                    </div>
-                </div>
-                   <div className="dealer-bottom">
-                       <div className="container">
-                           <div className="row">
-                               <div className="col-lg-4 col-sm-4">
-                                    <div className="dealer-bottom-innr">
-                                        <img src="/images/step1.png" alt=""/>
-                                        <div className="dealer-txt">
-                                            <h5>Step 1</h5>
-                                            <h3>Download the dealer form</h3>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sodales lacinia diam, nec aliquet lorem facilisis at. </p>
-                                        </div>
-                                    </div>
-                               </div>
-                                <div className="col-lg-4 col-sm-4">
-                                   <div className="dealer-bottom-innr">
-                                       <img src="/images/step2.png" alt=""/>
-                                       <div className="dealer-txt">
-                                            <h5>Step 2</h5>
-                                            <h3>Fill Up the dealer form</h3>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sodales lacinia diam, nec aliquet lorem facilisis at. </p>
-                                        </div>
-                                    </div>
-                                   </div>
-                               <div className="col-lg-4 col-sm-4">
-                                   <div className="dealer-bottom-innr">
-                                       <img src="/images/step3.png" alt=""/>
-                                       <div className="dealer-txt">
-                                            <h5>Step 3</h5>
-                                            <h3>Submit the dealer form</h3>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sodales lacinia diam, nec aliquet lorem facilisis at. </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                   </div>
-                
-        </section>
-
         <HomeBlog />
     </>
   )
