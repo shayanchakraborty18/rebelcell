@@ -1,12 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
+import { logout } from '../../actions/userActions';
+import { useAlert } from 'react-alert';
 
 import '../../App.css';
 
 function Header() {
+  const alert = useAlert();
+  const dispatch = useDispatch();
 
   const { cartItems } = useSelector(state => state.cart);
+  const { isAuthenticated } = useSelector(state => state.auth);
+
+    const logoutHandler = () => {
+    dispatch(logout());
+    alert.show('Logged out successfully');
+  }
   return (
     <>
          <header>
@@ -14,8 +24,8 @@ function Header() {
                 <div className="container-fluid">
                 <div className="header-top-innr innr-detail1">
                     <ul>
-                        <li><span><img src="/images/phone.png" alt=""/></span><a href="tel:+31 (071) 7107424">+31 (071) 7107424</a></li>
-                        <li><span><img src="/images/mail.png" alt=""/></span><a href="mailto:contact@rebel-cell.com">contact@rebel-cell.com</a></li>
+                        <li><span><img src="/images/phone.png" alt=""/></span><Link to='/' onClick={() => window.location = 'tel:+31 (071) 7107424'} >+31 (071) 7107424</Link></li>
+                        <li><span><img src="/images/mail.png" alt=""/></span><Link to='/' onClick={() => window.location = 'mailto:contact@rebel-cell.com'} >contact@rebel-cell.com</Link></li>
                     </ul>
                 </div>
                 <div className="header-top-innr">
@@ -29,7 +39,12 @@ function Header() {
                     </ul>
                 </div>
                 <div className="header-top-innr sign-innr">
-                    <a href="" className="top-btn"> Sign In</a>
+
+                  {isAuthenticated === true ? <li>
+										<Link to='/'  onClick={logoutHandler} className="top-btn">Logout </Link>
+									</li> : <Link to="/login" className="top-btn"> Sign In</Link>
+                  }
+                    
                 </div>
             </div>
        </div>
@@ -71,6 +86,12 @@ function Header() {
                   <li>
 										<Link to="/contact">Contact </Link>
 									</li>
+
+                  {isAuthenticated === true && <li>
+										<Link to="/me">My Account </Link>
+									</li>
+                  }
+                  
 								</ul>
 							</div>
 						</div>

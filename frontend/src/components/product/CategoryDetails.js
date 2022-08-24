@@ -3,7 +3,7 @@ import { Link,useParams,useLocation } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {useAlert} from 'react-alert';
 
-import Loader from '../layout/Loader';
+import {Loader} from '../layout/Loader';
 
 import { getProductsByCategory, clearErrors } from '../../actions/productActions';
 import { addItemToCart } from '../../actions/cartActions';

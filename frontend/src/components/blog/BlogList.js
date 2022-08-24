@@ -6,7 +6,7 @@ import { trimWords } from 'react-trim-words';
 import Moment from 'moment';
 
 import MetaData from '../layout/MetaData';
-import Loader from '../layout/Loader';
+import {Loader} from '../layout/Loader';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '../../actions/postActions';

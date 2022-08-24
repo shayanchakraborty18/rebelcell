@@ -1,7 +1,9 @@
 import React,  { useState } from 'react';
+import {Link} from 'react-router-dom';
 
 import HomeBlog from './blog/HomeBlog';
 import HomeSlider from './home/HomeSlider'; 
+
 
 
 function Home() {
@@ -177,7 +179,7 @@ function Home() {
                                         <h3>The Perfect rebelcell Product For you</h3>
                                         <p>Our Product Finder is a tool designed to narrow down your search by finding your preference from a series of simple product questions.</p>
                                     </div>
-                                        <a  className="product-btn">visit The Product Finder</a>
+                                        <Link to="/shop" className="product-btn">visit The Product Finder</Link>
                                     </div>
                                 </div>
                             </div>
@@ -201,7 +203,7 @@ function Home() {
                                     <img src="/images/product1.jpg" alt=""/>
                                     <div className="prod-txt">
                                     <h3>Angling Batteries</h3>
-                                    <a >View All</a>
+                                    <Link to="/category/batteries">View All</Link>
                                 </div>
                                 </div>
                                 
@@ -214,7 +216,7 @@ function Home() {
                                             <img src="/images/product3.jpg" alt=""/>
                                              <div className="prod-txt">
                                             <h3>Battery Chargers</h3>
-                                            <a >View All</a>
+                                            <Link to="/category/battery-chargers">View All</Link>
                                             </div>
                                         </div>
                                        
@@ -226,7 +228,7 @@ function Home() {
                                         <img src="/images/product4.jpg" alt="" />
                                         <div className="prod-txt">
                                         <h3>Accessories</h3>
-                                        <a >View All</a>
+                                        <Link to="/category/accessories">View All</Link>
                                         </div>
                                         </div>
                                     </div>
@@ -240,7 +242,7 @@ function Home() {
                                 <img src="/images/product2.jpg" alt="" />
                                 <div className="prod-txt">
                                     <h3>Outdoor Boxe</h3>
-                                    <a >View All</a>
+                                    <Link to="/category/outdoorboxes">View All</Link>
                                 </div>
                                 </div>
                             </div>
@@ -256,7 +258,7 @@ function Home() {
                                         <img src="/images/product5.jpg" alt="" />
                                         <div className="prod-txt">
                                         <h3>Fishing Packages</h3>
-                                        <a >View All</a>
+                                        <Link to="/category/fishing-packages">View All</Link>
                                         </div>
                                         </div>
                                     </div>
@@ -267,7 +269,7 @@ function Home() {
                                         <img src="/images/product6.jpg" alt="" />
                                         <div className="prod-txt">
                                         <h3>Other Products</h3>
-                                        <a >View All</a>
+                                        <Link to="/category/other-products">View All</Link>
                                         </div>
                                         </div>
                                     </div>

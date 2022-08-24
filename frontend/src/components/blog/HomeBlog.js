@@ -36,8 +36,7 @@ function HomeBlog() {
                               <h3>{post.post_title}</h3>
                               <p>{trimWords(post.post_content, 20, '...')}</p>
                               <div className="reading text-right">
-                                <Link to={`/post/${post.post_name}`}>
-                                  <a >Continue Reading</a>
+                                <Link to={`/post/${post.post_name}`}>Continue Reading
                                 </Link>
                               </div>
                           </div>

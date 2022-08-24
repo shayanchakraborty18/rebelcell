@@ -1,9 +1,15 @@
 import React from 'react';
 
-const Loader = () => {
+export const Loader = () => {
   return  (
     <div className="loader"></div>
   )
 }
 
-export default Loader;
+export const SmallLoader = () => {
+  return (
+    <div className="spinner-border" role="status">
+      <span className="sr-only">Loading...</span>
+    </div>
+  ) ;
+}

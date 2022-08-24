@@ -68,3 +68,10 @@
     margin-left: 5px;
     margin-right: 5px;
 }
+
+.login-sec {
+    /* float: left; */
+    padding-right: 30px;
+    border: 1px solid #b7b7b7;
+    padding: 30px;
+}

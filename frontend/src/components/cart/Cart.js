@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link } from 'react-router-dom';
 
 import MetaData from '../layout/MetaData'
 
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addItemToCart, removeItemFromCart } from '../../actions/cartActions'
 
 
-function Cart() {
+function Cart({history}) {
   const dispatch = useDispatch();
   const alert = useAlert();
   const { cartItems } = useSelector(state => state.cart);
@@ -37,6 +37,9 @@ function Cart() {
     alert.info('Cart Updated')
   }
 
+  const checkoutHandler = () => {
+    history.push("/login?redirect=checkout");
+  }
  
   return (
     <>
@@ -112,7 +115,7 @@ function Cart() {
                               <h3>ORDER SUMMARY</h3>
                               <div className="cart_total_txt">
                                   <span>Total Items</span>
-                                  <span>
+                                  <span>  
                                     {cartItems.reduce((acc, item) => (acc + Number(item.quantity)), 0)}
                                   </span>
                               </div>
@@ -128,7 +131,7 @@ function Cart() {
                                   <span>$ {cartItems.reduce((acc, item) => (acc + Number(item.quantity * item.price)), 0).toFixed(2)}</span>
                               </div>
                             </div>
-                            <a className="coupon_btn" href=""> PROCEED TO CHECKOUT </a>
+                            <button className="coupon_btn" onClick={checkoutHandler}> PROCEED TO CHECKOUT </button>
                         </div>
                       </div>
                   </div>

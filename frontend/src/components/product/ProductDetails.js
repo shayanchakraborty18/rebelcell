@@ -6,7 +6,7 @@ import {useAlert} from 'react-alert';
 
 import { getProductDetails, clearErrors } from '../../actions/productActions';
 import { addItemToCart } from '../../actions/cartActions';
-import Loader from '../layout/Loader';
+import {Loader} from '../layout/Loader';
 import MetaData from '../layout/MetaData';
 
 

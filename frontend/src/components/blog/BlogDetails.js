@@ -2,7 +2,7 @@ import React, {Fragment, useEffect, useState} from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import MetaData from '../layout/MetaData';
-import Loader from '../layout/Loader';
+import {Loader} from '../layout/Loader';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getPostDetails, clearErrors } from '../../actions/postActions';

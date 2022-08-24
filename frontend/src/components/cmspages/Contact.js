@@ -1,7 +1,69 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {Link} from 'react-router-dom';
+import {useAlert} from 'react-alert';
+import axios from 'axios';
+import {SmallLoader as Loader} from '../layout/Loader';
 
 function Contact() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [companyname, setCompanyName] = useState('');
+  const [telephone, setTelephone] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const alert = useAlert();
+
+
+  const onChangeHandler = (fieldName, value)=>{
+    if(fieldName === "name"){
+      setName(value);
+    }else if(fieldName === "email"){
+      setEmail(value);
+    }else if(fieldName === "companyname"){
+      setCompanyName(value);
+    }else if(fieldName === "telephone"){
+      setTelephone(value);
+    }else if(fieldName === "subject"){
+      setSubject(value);
+    }else if(fieldName === "message"){
+      setMessage(value);
+    }
+  }
+
+
+  const contactSubmitHandler = (e) => {
+    e.preventDefault();
+
+    if(name.trim() === '' || email.trim() === '') {
+      alert.error('Name and email is required');
+    } else {
+      try {
+        setLoading(true)
+        axios.post('/api/v1/contact/new', {
+          name: name,
+          email: email,
+          company_name: companyname,
+          telephone: telephone,
+          subject: subject,
+          message: message
+        }).then(res => {
+          setLoading(false)
+          alert.success(res.data.message);
+          setName('');
+          setEmail('');
+          setCompanyName('');
+          setTelephone('');
+          setSubject('');
+          setMessage('');
+        })
+      } catch(e) {
+        setLoading(false)
+        alert.error(e.message);
+      }
+    }
+  }
   return (
     <>
       <section className="banner-sec contact-banner">
@@ -24,68 +86,44 @@ function Contact() {
                       <div className="contact-innr">
                           <p>Would you like to know where a Rebelcell dealer is located in your area, would you like to request a dealer information package, or do you have another question for us? You can contact us via the form below.</p>
                           <div className="contact-form">
-                              <form>
-              <div className="row">
-                <div className="col-lg-6 col-sm-6">
-                  <div className="from-grp">
-                    <div className="form-label">
-                      <label for="name">Name</label>
-                      <span className="star">*</span>
-                    </div>
-                    <input type="text" className="form-control" id="name" />
-                  </div>
-                </div>
-
-                <div className="col-lg-6 col-sm-6">
-                  <div className="from-grp">
-                    <div className="form-label">
-                      <label>Company Name</label>
-                      <span className="star">*</span>
-                    </div>
-                    <input type="text" className="form-control" />
-                  </div>
-                </div>
-                <div className="col-lg-6 col-sm-6">
-                  <div className="from-grp">
-                    <div className="form-label">
-                      <label>Email</label>
-                      <span className="star">*</span>
-                    </div>
-
-                    <input type="email" className="form-control" />
-                  </div>
-                </div>
-                <div className="col-lg-6 col-sm-6">
-                  <div className="from-grp">
-                    <div className="form-label">
-                      <label>Telephone Number</label>
-                    </div>
-                    <input type="tel" className="form-control" />
-                  </div>
-                </div>
-                <div className="col-lg-12 col-sm-12">
-                  <div className="from-grp">
-                    <div className="form-label">
-                      <label>Subject/Topic</label>
-                    </div>
-                    <input type="text" className="form-control" />
-                  </div>
-                </div>
-                <div className="col-lg-12 col-sm-12">
-                  <div className="from-grp">
-                    <div className="form-label">
-                      <label>Message</label>
-                      <span className="star">*</span>
-                    </div>
-                    <textarea className="form-control"> </textarea>
-                  </div>
-                </div>
-              </div>
-                                  <div className="submit-bottom">
-                                      <input type="submit" value="Send Message"/>
-                                      <span><sup>*</sup>denotes required fields</span>
+                            <form onSubmit={(e) => contactSubmitHandler(e)}>
+                              <div className="row">
+                                <div className="col-lg-6 col-sm-6">
+                                  <div className="from-grp">
+                                    <input type="text" className="form-control" value={name} placeholder='Name' name="name" id="name" onChange={(e)=>{ onChangeHandler("name",e.target.value)}} />
                                   </div>
-            </form>
+                                </div>
+
+                                <div className="col-lg-6 col-sm-6">
+                                  <div className="from-grp">
+                                    <input type="text" className="form-control" value={companyname} placeholder='Company Name' name="companyname" onChange={(e)=>{ onChangeHandler("companyname",e.target.value)}} />
+                                  </div>
+                                </div>
+                                <div className="col-lg-6 col-sm-6">
+                                  <div className="from-grp">
+                                    <input type="email" className="form-control" value={email} placeholder='Email' name="email" onChange={(e)=>{ onChangeHandler("email",e.target.value)}} />
+                                  </div>
+                                </div>
+                                <div className="col-lg-6 col-sm-6">
+                                  <div className="from-grp">
+                                    <input type="tel" className="form-control" value={telephone} placeholder='Telephone Number' name="telephone" onChange={(e)=>{ onChangeHandler("telephone",e.target.value)}}/>
+                                  </div>
+                                </div>
+                                <div className="col-lg-12 col-sm-12">
+                                  <div className="from-grp">
+                                    <input type="text" className="form-control" value={subject} placeholder='Subject/Topic' name="subject" onChange={(e)=>{ onChangeHandler("subject",e.target.value)}} />
+                                  </div>
+                                </div>
+                                <div className="col-lg-12 col-sm-12">
+                                  <div className="from-grp">
+                                    <textarea className="form-control" value={message} placeholder='Message' name="message" onChange={(e)=>{ onChangeHandler("message",e.target.value)}} > </textarea>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="submit-bottom">
+                                  <input type="submit" value={loading ? 'Sending...' : 'Send Message'} disabled={loading === true ? true : false}/>
+                              </div>
+                            </form>
                           </div>
                       </div>
                   </div>

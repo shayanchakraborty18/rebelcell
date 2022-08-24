@@ -103,15 +103,26 @@ app.get('*', function(req, res, next) {
   next();
 });
 
+app.get('/admin', (req, res) => {
+  res.redirect('/admin/login')
+})
+
 // Import all the routes
 const adminRoutes = require('./routes/adminRoutes');
 const postRoutes = require('./routes/postRoutes');
 const productRoutes = require('./routes/productRoutes');
+const authRoutes = require('./routes/authRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+const cmsRoutes = require('./routes/cmsRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
 
-app.use('/admin',  adminRoutes);
+app.use('/admin',   adminRoutes);
 app.use('/api/v1',  postRoutes);
 app.use('/api/v1',  productRoutes);
-
+app.use('/api/v1',  authRoutes);
+app.use('/api/v1',  orderRoutes);
+app.use('/api/v1',  cmsRoutes);
+app.use('/api/v1',  paymentRoutes);
 
 if(process.env.NODE_ENV === 'PRODUCTION') {
   app.use(express.static(path.join(__dirname, '../frontend/build')));

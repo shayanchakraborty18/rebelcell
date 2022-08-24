@@ -3,7 +3,8 @@
   import {
   ADD_TO_CART,
   REMOVE_ITEM_CART,
-  SAVE_SHIPPING_INFO
+  SAVE_SHIPPING_INFO,
+  CLEAR_CART
 } from '../constants/cartConstants';
 
 
@@ -39,4 +40,11 @@ export const saveShippingInfo = (data) => (dispatch) => {
   dispatch({ type: SAVE_SHIPPING_INFO , payload: data });
 
   localStorage.setItem('shippingInfo', JSON.stringify(data));
+}
+
+
+export const clearCart = () => (dispatch) => {
+  dispatch({ type: CLEAR_CART });
+
+  localStorage.removeItem('cartItems');
 }

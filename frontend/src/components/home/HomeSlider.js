@@ -1,4 +1,5 @@
 import React,  { useState } from 'react';
+import {Link} from 'react-router-dom';
 
 import Slider from 'react-slick';
 
@@ -50,24 +51,24 @@ function HomeSlider() {
       secondTitle: 'But <span> Lightweight.</span>',
       description: 'The perfect solution to all your Angler Fishing Energy needs.'
     }
-  ]
+  ];
   return (
-    <div id="myCarousel" class="project_page">
+    <div id="myCarousel" className="project_page">
   
-        <div class="project_slide">
-          <div class="project_description_slide">
-            <div class="slider project-slider-for">
+        <div className="project_slide">
+          <div className="project_description_slide">
+            <div className="slider project-slider-for">
               <Slider ref={setSliderRef} {...sliderSettings}>
                 {slidersItems.map((card, index) => (
-                  <div key={index} class="commercial_sec">
+                  <div key={index} className="commercial_sec">
                     <img src={card.imageSrc} alt="" />
-                      <div class="container">
-                        <div class="project_slide_txt">
-                          <div class="project_description_inner">
+                      <div className="container">
+                        <div className="project_slide_txt">
+                          <div className="project_description_inner">
                             <h2>{card.title}</h2>
                             <h1 dangerouslySetInnerHTML={{__html: card.secondTitle}}></h1>
                             <p>{card.description}</p>
-                            <a href="" class="ban-btn">start SHopping Now</a>
+                            <Link to="/shop" className="ban-btn">start SHopping Now</Link>
                           </div>
                         </div>
                     </div>
