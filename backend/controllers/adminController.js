@@ -685,3 +685,18 @@ exports.getAllOrders = async (req, res) => {
     orders: orders
   });
 }
+
+
+exports.getOrderDetails = async (req, res) => {
+  const order = await Order.findById(req.params.orderid).populate('user');
+  // res.send(order);
+  if(!order) {
+    res.status(201).json({message: 'Order Not Found'});
+    return;
+  }
+
+  res.render('admin/edit-order', {
+    title: 'Edit Order',
+    order: order 
+  });
+}

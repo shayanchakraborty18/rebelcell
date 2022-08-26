@@ -24,7 +24,8 @@ const {
   editProductAction,
   deleteProductAction,
   getAllContacts,
-  getAllOrders
+  getAllOrders,
+  getOrderDetails
 } = require('../controllers/adminController');
 
 
@@ -61,6 +62,7 @@ router.delete('/delete-product/:productid', isAdmin, deleteProductAction);
 router.get('/all-contacts', isAdmin, getAllContacts);
 
 router.get('/all-orders', isAdmin, getAllOrders);
+router.get('/edit-order/:orderid', isAdmin, getOrderDetails);
 
 
 
