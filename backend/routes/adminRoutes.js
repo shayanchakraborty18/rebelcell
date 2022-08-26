@@ -23,6 +23,8 @@ const {
   editProduct,
   editProductAction,
   deleteProductAction,
+  getAllContacts,
+  getAllOrders
 } = require('../controllers/adminController');
 
 
@@ -55,5 +57,11 @@ router.post('/add-product', isAdmin, addNewProductAction);
 router.get('/edit-product/:productid', isAdmin, editProduct);
 router.post('/edit-product/:productid', isAdmin, editProductAction);
 router.delete('/delete-product/:productid', isAdmin, deleteProductAction);
+
+router.get('/all-contacts', isAdmin, getAllContacts);
+
+router.get('/all-orders', isAdmin, getAllOrders);
+
+
 
 module.exports = router;

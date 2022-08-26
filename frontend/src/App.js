@@ -39,6 +39,8 @@ import { useSelector } from 'react-redux'
 // Payment
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
+import MyOrders  from './components/user/MyOrders';
+import OrderDetails from './components/user/OrderDetails';
 
 
 function App() {
@@ -81,6 +83,9 @@ function App() {
           <ProtectedRoute path="/success" component={OrderSuccess} exact />
           <ProtectedRoute path="/me" component={Profile} exact />
           <ProtectedRoute path="/me/update" component={UpdateProfile} exact />
+          <ProtectedRoute path="/myorders" component={MyOrders} exact />
+          <ProtectedRoute path="/order/:id" component={OrderDetails} exact />
+          
           
 
           <Route path="/login" component={Login}  exact/>

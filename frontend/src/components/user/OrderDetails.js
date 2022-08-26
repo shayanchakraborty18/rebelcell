@@ -1,31 +1,47 @@
-import React from 'react';
+import React, {useEffect, Fragment} from 'react';
 import { Link } from 'react-router-dom';
+import Moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAlert } from 'react-alert';
 import { logout } from '../../actions/userActions';
+import { getOrderDetails, clearErrors } from '../../actions/orderActions';
 
-function Profile({location}) {
+function OrderDetails({ match, location }) {
   const alert = useAlert();
   const dispatch = useDispatch();
   
   const {user} = useSelector(state => state.auth)
+  const {order, error, loading} = useSelector(state => state.orderDetails)
+  
+  useEffect(() => {
+  
+    if(error) {
+      alert.error(error);
+      dispatch(clearErrors())
+    }
+
+    dispatch(getOrderDetails(match.params.id));
+    
+  }, [alert, dispatch, error, match.params.id])
+
   const logoutHandler = () => {
     dispatch(logout());
     alert.show('Logged out successfully');
   }
 
   return (
-    <>
+    <Fragment>
+
       <section className="banner-sec">
           <img src="/images/landing-banner.jpg" alt=""/>
           <div className="container">
               <div className="banner-txt">
-                  <h1>my account</h1> 
+                  <h1>my orders</h1> 
                     <ul className="breadcrumb">
                         <li>
                           <Link to="/">Home</Link>
                         </li>
-                        <li>my account</li>
+                        <li>my orders</li>
                     </ul>
               </div>
           </div>
@@ -53,7 +69,7 @@ function Profile({location}) {
 										<Link to="/myorders" > Orders</Link>
 									</li>
 									<li>
-										<a href="javascript:void(0);">Account Details</a>
+										<Link to="/">Account Details</Link>
 									</li>
 									<li>
 										<Link to="/" onClick={logoutHandler}> Log out</Link>
@@ -64,8 +80,15 @@ function Profile({location}) {
 					</div>
 					<div className="col-lg-9 col-sm-9">
 						<div className="my-account-txt">
-							<h3>My Account</h3>
+							<h3>My Orders</h3>
 							<p>Hello {user.name} (not admin? <Link to="/" onClick={logoutHandler}> Log out</Link>) From your account dashboard you can view your recent orders </p>
+              <div className="recent-order">
+								<h3>Order Details</h3>
+								
+								<div className='order-details'>
+                  Order Id: 
+                </div>
+              </div>
 							
 						</div>
 					</div>
@@ -75,8 +98,8 @@ function Profile({location}) {
 		</section>
 		
 
-    </>
+    </Fragment>
   )
 }
 
-export default Profile
+export default OrderDetails;

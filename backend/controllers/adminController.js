@@ -2,6 +2,8 @@ const User = require('../models/user');
 const Post = require('../models/post');
 const ProductCategories = require('../models/productCategories');
 const Product = require('../models/product');
+const Contact = require('../models/contact');
+const Order = require('../models/order');
 const bcrypt = require("bcrypt");
 const path = require('path');
 
@@ -653,3 +655,33 @@ exports.deleteProductAction = async (req, res) => {
 
 
 // Product-------END----------------------------------------------------
+
+// all contacts
+exports.getAllContacts = async (req, res) => {
+  const contacts = await Contact.find();
+
+  if(!contacts) {
+    res.status(201).json({message: 'Contacts Not Found'});
+    return;
+  }
+
+  res.render('admin/contacts', {
+    title: 'All Contacts',
+    contacts: contacts
+  });
+}
+
+//all orders
+exports.getAllOrders = async (req, res) => {
+  const orders = await Order.find().populate('user');
+  // res.send(orders);
+  if(!orders) {
+    res.status(201).json({message: 'Orders Not Found'});
+    return;
+  }
+
+  res.render('admin/all-orders', {
+    title: 'All Orders',
+    orders: orders
+  });
+}
