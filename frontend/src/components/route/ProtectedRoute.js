@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const { isAuthenticated, loading, user } = useSelector(state => state.auth)
+
   return (
     <Fragment>
       {loading === false && (
@@ -11,7 +12,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
           {...rest}
           render={props => {
             if(isAuthenticated === false) { 
-              <Redirect to='/login' />
+              return <Redirect to='/login' />
             }
             return <Component {...props} />
           }}

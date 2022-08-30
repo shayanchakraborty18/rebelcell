@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'; 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
@@ -44,6 +44,7 @@ import OrderDetails from './components/user/OrderDetails';
 
 
 function App() {
+
   const [stripeApiKey, setStripeApiKey] = useState('');
   useEffect(() => {
     store.dispatch(loadUser())
@@ -75,11 +76,12 @@ function App() {
           <Route path="/product/:slug" component={ProductDetails} exact />
           <Route path="/cart" component={Cart} exact />
 
-          {stripeApiKey && 
-            <Elements stripe={loadStripe(stripeApiKey)}>
-              <ProtectedRoute path="/checkout" component={Checkout} />
-            </Elements>
-          }
+          
+          <Elements stripe={loadStripe(stripeApiKey)}>
+            <ProtectedRoute path="/checkout" component={Checkout} />
+          </Elements>
+          
+      
           <ProtectedRoute path="/success" component={OrderSuccess} exact />
           <ProtectedRoute path="/me" component={Profile} exact />
           <ProtectedRoute path="/me/update" component={UpdateProfile} exact />
@@ -91,7 +93,7 @@ function App() {
           <Route path="/login" component={Login}  exact/>
           <Route path="/register" component={Register} exact/>
            
-
+          {/* <Route path="*" component={Home} exact /> */}
         <Footer />
       </div>
     </Router>

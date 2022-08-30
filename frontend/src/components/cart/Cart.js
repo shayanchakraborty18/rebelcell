@@ -12,6 +12,7 @@ function Cart({history}) {
   const dispatch = useDispatch();
   const alert = useAlert();
   const { cartItems } = useSelector(state => state.cart);
+  const { isAuthenticated } = useSelector(state => state.auth);
 
   const removeCartItemHandle = product => {
     dispatch(removeItemFromCart(product));
@@ -38,7 +39,7 @@ function Cart({history}) {
   }
 
   const checkoutHandler = () => {
-    history.push("/login?redirect=checkout");
+    history.push(isAuthenticated === true ? "/checkout" : "/login?redirect=checkout");
   }
  
   return (
@@ -102,9 +103,6 @@ function Cart({history}) {
                           </div>
                         </div>
                       ))}
-                      
-
-
                   </div>
                 </div>
                 <div className="summary-outr">

@@ -25,7 +25,8 @@ function Login({history, location}) {
   useEffect(() => {
 
     if(isAuthenticated) {
-      history.push(redirect);
+      window.location.href = redirect;
+      // history.push(redirect);
     }
 
     if(error) {
