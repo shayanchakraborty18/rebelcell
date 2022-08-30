@@ -6,7 +6,7 @@ import Footer from './components/layout/Footer';
 import ScrollToTop from './components/layout/ScrollToTop';
 
 import Home from './components/Home';
-import BlogList from './components/blog/BlogList';
+import BlogList from './components/blog/BlogList.js';
 import BlogDetails from './components/blog/BlogDetails';
 
 import About from './components/cmspages/About';

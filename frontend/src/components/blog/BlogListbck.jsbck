@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState, useRef, useCallback} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import Pagination from 'react-js-pagination';
 import { Link } from 'react-router-dom';
 
@@ -13,8 +13,6 @@ import { getPosts } from '../../actions/postActions';
 
 import { useAlert } from 'react-alert';
 
-import useInfiniteLoading from './useInfiniteLoading'
-
 
 function BlogList() {
 
@@ -23,20 +21,6 @@ function BlogList() {
 
   const dispatch = useDispatch();
   const alert = useAlert();
-
-  const { iposts, hasMore, iloading, ierror } = useInfiniteLoading(currentPage);
-
-  const observer = useRef()
-  const lastPostElementRef = useCallback(node => {
-    if (iloading) return
-    if (observer.current) observer.current.disconnect()
-    observer.current = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting && hasMore) {
-        setCurrentPage(prevPageNumber => prevPageNumber + 1)
-      }
-    })
-    if (node) observer.current.observe(node)
-  }, [iloading, hasMore])
 
   const {loading, posts, error, postsCount, resPerPage}  = useSelector(state => state.posts);
 
@@ -78,58 +62,14 @@ function BlogList() {
                 </div>
             </div>
         </section>
-        
+        {loading ? <Loader /> :
         <Fragment>
         <section className="blog-innr-sec wow fadeInUp">
             <div className="container">
                 <div className="blog-innr-outr">
                     <div className="row">
                         <div className="col-lg-8 col-sm-8">
-                          {iposts && iposts.map((post, index) => {
-                            if (iposts.length === index + 1) {
-                                return (
-                                    <div ref={lastPostElementRef} key={post._id} className="bg-innr-left">
-                                    
-                                      <div className="bg-img">
-                                        <Link to={`/post/${post.post_name}`}>
-                                          <img src={`/admin_uploads/${post.featured_image}`} alt=""/>
-                                        </Link>
-                                      </div> 
-                                      <div className="bg-txt">
-                                        <h3>{post.post_title} </h3>
-                                        <h5>By: {post.post_author.name}  {Moment(post.post_date).format('MMMM d, YYYY')} </h5>
-                                        <p>{trimWords(post.post_content, 30, '...')}
-                                        <Link to={`/post/${post.post_name}`}>Read more</Link>
-                                        </p>
-                                      </div> 
-                                    <div className="border-bottom"></div>
-                                  </div>
-                                )
-                              } else {
-                                return (
-                                    <div key={post._id} className="bg-innr-left">
-                                      <div className="bg-img">
-                                        <Link to={`/post/${post.post_name}`}>
-                                          <img src={`/admin_uploads/${post.featured_image}`} alt=""/>
-                                        </Link>
-                                      </div> 
-                                      <div className="bg-txt">
-                                        <h3>{post.post_title} </h3>
-                                        <h5>By: {post.post_author.name}  {Moment(post.post_date).format('MMMM d, YYYY')} </h5>
-                                        <p>{trimWords(post.post_content, 30, '...')}
-                                        <Link to={`/post/${post.post_name}`}>Read more</Link>
-                                        </p>
-                                      </div> 
-                                    <div className="border-bottom"></div>
-                                  </div>
-                                )
-                              } 
-                            
-                          })}
-
-                          <div>{iloading && <Loader />}</div>
-                          <div>{ierror && 'Error'}</div>
-                          {/* {posts && posts.map(post => (
+                          {posts && posts.map(post => (
                             <div key={post._id} className="bg-innr-left">
                                 <div className="bg-img">
                                   <Link to={`/post/${post.post_name}`}>
@@ -145,9 +85,9 @@ function BlogList() {
                                 </div> 
                               <div className="border-bottom"></div>
                             </div>
-                          ))} */}
+                          ))}
 
-                            {/* {resPerPage <= count && (
+                            {resPerPage <= count && (
                               <div className="blog-pegination text-center">
                                 <div className="pegination">
                                   <Pagination 
@@ -165,7 +105,7 @@ function BlogList() {
                                   />
                                 </div>                    
                               </div>
-                            )} */}
+                            )}
                             
                         </div>
                         
@@ -191,9 +131,9 @@ function BlogList() {
            </div>
         </section>
     </Fragment>
-    
+    }
     </Fragment>
   )
 }
 
-export default BlogList;
+//export default BlogList;
