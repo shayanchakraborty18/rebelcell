@@ -1,14 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState} from 'react';
+import { Link, useLocation , Route } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import { logout } from '../../actions/userActions';
 import { useAlert } from 'react-alert';
 
+import SearchForm from '../product/SearchForm';
+
 import '../../App.css';
 
-function Header() {
+function Header({history}) {
   const alert = useAlert();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const { cartItems } = useSelector(state => state.cart);
   const { isAuthenticated } = useSelector(state => state.auth);
@@ -17,6 +20,8 @@ function Header() {
     dispatch(logout());
     alert.show('Logged out successfully');
   }
+
+  
   return (
     <>
          <header>
@@ -66,7 +71,7 @@ function Header() {
 							</button>
 							<div className="collapse navbar-collapse top_nav" id="bs-example-navbar-collapse-1">
 								<ul>
-									<li className="active top-innr">
+									<li className={location.pathname === '/shop' ? 'top-innr active' : ''}>
 										 <div className="dropdown">
                         <Link to="/shop"className="dropdown-toggle">Shop &nbsp;
                         <span><i className="fa fa-angle-down" aria-hidden="true"></i></span></Link>
@@ -80,14 +85,14 @@ function Header() {
                         </ul>
                       </div> 
                   </li>
-									<li>
+									<li className={location.pathname === '/news' ? 'active' : ''}>
 										<Link to="/news">News</Link>
 									</li>
-                  <li>
+                  <li className={location.pathname === '/contact' ? 'active' : ''}>
 										<Link to="/contact">Contact </Link>
 									</li>
 
-                  {isAuthenticated === true && <li>
+                  {isAuthenticated === true && <li className={location.pathname === '/me' ? 'active' : ''}>
 										<Link to="/me">My Account </Link>
 									</li>
                   }
@@ -98,6 +103,7 @@ function Header() {
 					</nav>
                </div>
                <div className="header-icon">
+                    <Route render={({ history }) => <SearchForm history={history} />} />
                     
                     <div className="cart-icon">
                       <Link to="/cart">

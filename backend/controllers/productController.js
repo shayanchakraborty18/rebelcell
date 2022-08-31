@@ -32,6 +32,20 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
     })
 })
 
+exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
+
+  let products = await Product.find().populate('post_author');
+  
+  if(!products) {
+    return next(new ErrorHandler('Products not found', 404));
+  }
+
+    res.status(200).json({
+      success: true,
+      products
+  })
+})
+
 
 // Get single product details   =>   /api/v1/product/:slug
 exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {

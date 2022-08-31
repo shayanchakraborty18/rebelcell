@@ -19,6 +19,8 @@ import Shop from './components/product/Shop';
 import CategoryDetails from './components/product/CategoryDetails';
 import ProductDetails from './components/product/ProductDetails';
 import Cart from './components/cart/Cart';
+import Search from './components/product/Search';
+
 
 // auth or user imports
 import Login from './components/user/Login';
@@ -75,7 +77,7 @@ function App() {
           <Route path="/category/:catslug" component={CategoryDetails} exact />
           <Route path="/product/:slug" component={ProductDetails} exact />
           <Route path="/cart" component={Cart} exact />
-
+          <Route path="/search/:keyword" component={Search} />
           
           <Elements stripe={loadStripe(stripeApiKey)}>
             <ProtectedRoute path="/checkout" component={Checkout} />
