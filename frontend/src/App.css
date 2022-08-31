@@ -75,3 +75,36 @@
     border: 1px solid #b7b7b7;
     padding: 30px;
 }
+
+
+.search_box {
+
+    overflow: visible;
+}
+.search_box input[type="search"], .search_box input[type="text"] {
+    height: 43px;
+}
+.search_box input[type="submit"], .search_box button {
+    top: 13px; 
+    bottom: auto;
+}
+.search_box form {
+    padding-left: 0;
+}
+.search_box input[type="text"] {
+    padding-left: 50px;
+}
+ul.suggestions {
+     background: #fff;
+    padding: 10px;
+}
+ul.suggestions li {
+  margin-bottom: 8px;
+}
+ul.suggestions li:last-child {
+  margin-bottom: 0px;
+}
+
+.search_box {
+    width: 100%;    
+}
