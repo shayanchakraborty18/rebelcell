@@ -1,7 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 
-
 const SearchForm = ({ history }) => {
 
   const [keyword, setKeyword] = useState('');
@@ -10,8 +9,6 @@ const SearchForm = ({ history }) => {
   const [data, setData] = useState([]);
   const [suggestionIndex, setSuggestionIndex] = useState(0);
   const [suggestionsActive, setSuggestionsActive] = useState(false);
-
-console.log(suggestions);
 
   useEffect(() => {
     axios({
@@ -52,17 +49,12 @@ console.log(suggestions);
       }
       setSuggestionIndex(suggestionIndex + 1);
     }
-    // ENTER
-    else if (e.keyCode === 13) {
-      setKeyword(suggestions[suggestionIndex]);
-      setSuggestionIndex(0);
-      setSuggestionsActive(false);
-    }
   }
 
   function handleChange(e) {
     const query = e.target.value.toLowerCase();
-    setKeyword(query);
+    setKeyword(e.target.value);
+
     if (query.length > 1) {
       const filterSuggestions = data.filter(
         (suggestion) =>
