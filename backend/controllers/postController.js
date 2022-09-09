@@ -21,17 +21,13 @@ exports.allPosts = catchAsyncErrors(async (req, res, next) => {
   if(!posts) {
     return next(new ErrorHandler('No posts found', 404));
   }
-  
-  // console.log(req.get('Referrer'));
 
   res.status(200).json({
     success: true,
-    host: req.get('host'),
     postsCount,
     resPerPage,
     filteredPostsCount,
-    posts,
-    
+    posts
   })
 
 });
